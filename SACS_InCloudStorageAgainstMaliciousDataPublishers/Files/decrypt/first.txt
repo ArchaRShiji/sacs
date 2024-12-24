@@ -1,0 +1,17 @@
+try
+                {
+                    WebClient req = new WebClient();
+                    HttpResponse response = HttpContext.Current.Response;
+                    response.Clear();
+                    response.ClearContent();
+                    response.ClearHeaders();
+                    response.Buffer = true;
+                    response.AddHeader("Content-Disposition", "attachment;filename=" + Path.GetFileName(outputpath));
+                    Response.WriteFile(outputpath);
+
+                    Response.Flush();
+                    response.End();
+                }
+                catch (Exception ex)
+                {
+                }
